@@ -38,7 +38,14 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Trans
 
 :: echo [+] Some registry house keeping activites for older systems:
 :: reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1
-
+:: Downloading KB3004375
+:: Windows 7
+:: bitsadmin /transfer PatchDownloadJob /download /priority normal https://download.microsoft.com/download/0/E/3/0E32F39B-1D5E-4B0E-804C-F736DAADDD93/Windows6.1-KB3004375-v3-x86.msu c:\Windows6.1-KB3004375-v3-x86.msu
+:: wusa.exe c:\Windows6.1-KB3004375-v3-x86.msu /quiet /norestart
+:: Windows 7 for x64-based Systems
+:: bitsadmin /transfer PatchDownloadJob /download /priority normal https://download.microsoft.com/download/F/4/B/F4BE818D-22B9-4EF5-8E20-B9C4A605E61E/Windows6.1-KB3004375-v3-x64.msu c:\Windows6.1-KB3004375-v3-x64.msu
+:: wusa.exe c:\Windows6.1-KB3004375-v3-x64.msu /quiet /norestart
+ 
 Auditpol /get /category:* > AuditPol_BEFORE_%TIME%.txt
 
 :: Begin Windows Event logging improvments
